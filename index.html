@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="description" content="Contagem regressiva em relógios flip para as férias (18/12/2026 às 17h) e para os feriados do calendário escolar, no horário de Brasília.">
+<meta name="description" content="Contagem regressiva em relógios flip para as férias (18/12/2026 às 17h) e para os feriados até o fim do ano, no horário de Brasília.">
 <title>Painel de Feriados</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b0b0c'/%3E%3Crect x='5' y='6' width='9' height='20' rx='2' fill='%23555658'/%3E%3Crect x='18' y='6' width='9' height='20' rx='2' fill='%23555658'/%3E%3Crect x='3' y='15' width='26' height='2' fill='%230b0b0c'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -186,8 +186,11 @@ h1{margin:0;font:600 24px/1 var(--ff-d);letter-spacing:.08em;text-transform:uppe
   .sec .clock{display:grid;grid-template-columns:repeat(2,auto);justify-content:center;row-gap:calc(var(--h)*.36)}
 }
 
-.foot{max-width:72ch;font-size:13px;line-height:1.6;color:var(--muted)}
-.foot p{margin:0 0 8px}
+.foot{border-top:1px solid var(--line);padding-top:28px}
+.foot h2{margin:0;font:500 22px/1.1 var(--ff-d);letter-spacing:.08em;text-transform:uppercase}
+.foot dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:22px 32px;margin:18px 0 0}
+.foot dt{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+.foot dd{margin:6px 0 0;max-width:42ch;font-size:14px;line-height:1.6;color:var(--muted)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 @media (prefers-reduced-motion:reduce){.go .ft,.go .fb{animation:none}}
@@ -226,14 +229,19 @@ body{margin:0}
   <section aria-labelledby="h-hol">
     <div class="sec-head">
       <h2 id="h-hol">Feriados até o fim do ano</h2>
-      <p>Conforme o calendário escolar. A contagem termina à 0h do dia.</p>
+      <p>A contagem termina à 0h do dia.</p>
     </div>
     <div class="grid" id="g-hol"></div>
   </section>
 
-  <footer class="foot">
-    <p>Datas conforme o Calendário Escolar 2026 do Colégio Santa Úrsula. O tempo letivo conta só os dias de aula: segunda a sexta, sem feriados, mais os sábados letivos (17/10 e 28/11), até o fim do último dia letivo (16/12). Horas, minutos e segundos letivos correm apenas nesses dias.</p>
-    <p>Todos os horários seguem Brasília (UTC−3), sem horário de verão. A contagem usa o relógio do seu aparelho, convertido para o fuso de Brasília. Feriados que caem no fim de semana não aparecem.</p>
+  <footer class="foot" aria-labelledby="h-como">
+    <h2 id="h-como">Como funciona</h2>
+    <dl>
+      <div><dt>Tempo letivo</dt><dd>Conta só os dias de aula: segunda a sexta (e sábados letivos), sem feriados. Horas, minutos e segundos correm apenas nesses dias, até o fim do último dia letivo.</dd></div>
+      <div><dt>Tempo corrido</dt><dd>Conta todos os dias, sem pausas, até as férias.</dd></div>
+      <div><dt>Horário</dt><dd>Todos os horários seguem Brasília (UTC−3), sem horário de verão. A contagem usa o relógio do seu aparelho, convertido para o fuso de Brasília.</dd></div>
+      <div><dt>Feriados</dt><dd>Aparecem apenas os que caem em dias úteis. Os que caem no fim de semana não são exibidos.</dd></div>
+    </dl>
   </footer>
 </div>
 
@@ -248,7 +256,8 @@ const HOLS=[
   ['Finados',[2026,11,2]],
   ['Proclamação da República',[2026,11,15]],
   ['Dia da Consciência Negra',[2026,11,20]],
-  ['Natal',[2026,12,25]]
+  ['Natal',[2026,12,25]],
+  ['Véspera de Ano Novo',[2026,12,31]]
 ];
 const LET_FIM=Date.UTC(2026,11,16);          // último dia letivo: 16/12
 const SAB_LET=['2026-10-17','2026-11-28'];   // sábados letivos
